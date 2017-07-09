@@ -1,0 +1,50 @@
+import Vue from "vue"
+import vueRouter from 'vue-router'
+import vueResource from 'vue-resource'
+
+import App from './App.vue'
+
+//导入mui样式
+import './statics/css/mui.min.css'
+import './statics/css/icons-extra.css'
+
+//导入自定义样式
+import './statics/css/base.css'
+import './statics/js/base.js'
+
+//载入mint-ui框架
+import mintUI from 'mint-ui'
+Vue.use(mintUI)//注入vue	
+import 'mint-ui/lib/style.min.css'
+
+//在vue中加载vueRouter
+Vue.use(vueRouter);
+
+// 使用vueResource对象才能自动在Vue对象实例上挂载一个$http
+Vue.use(vueResource);
+
+Vue.filter('replacestr',function(input,par){
+	return input.replace(par,'')
+})
+
+import Home from './components/Home/Home.vue'
+import member from './components/member/member.vue'
+import shopCart from './components/shopCart/shopCart.vue'
+import search from './components/search/search.vue'
+let router = new vueRouter({
+	linkActiveClass:'mui-active',
+	routes:[
+		{name:'root',path:'/',redirect:'/Home'},//当路由为'/'的时候重定向到'/ Home'
+		{name:'home',path:'/Home',component:Home},
+		{name:'member',path:'/member',component:member},
+		{name:'shopCart',path:'/shopCart',component:shopCart},
+		{name:'search',path:'/search',component:search}
+	]
+})
+
+new Vue({
+	el:'#app',
+	router,
+	render:c=>c(App)
+})
+
