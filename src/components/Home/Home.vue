@@ -6,10 +6,10 @@
 		<div class="mui-content">
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<router-link to="/news/newsList">
 						<span class="mui-icon mui-icon-home"></span>
 						<div class="mui-media-body">新闻资讯</div>
-					</a>
+					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
 					<a href="#">
@@ -47,6 +47,8 @@
 </template>
 <script>
 	import bannerSlide from '../common/bannerSlide.vue'
+	//导入公共配置文件
+	import apiHost from "../../config.js"
 	export default{
 		data(){
 			return{
@@ -58,7 +60,7 @@
 		},
 		methods:{
 			getBanner(){
-				var url = 'http://localhost:2017/src/statics/data/banner.json'
+				var url = apiHost.apihost + '/src/statics/data/banner.json'
 				this.$http.get(url).then(
 					function(res){
 						this.list = JSON.parse(res.bodyText);

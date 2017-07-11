@@ -12,7 +12,7 @@ import './statics/css/icons-extra.css'
 import './statics/css/base.css'
 import './statics/js/base.js'
 
-//载入mint-ui框架
+//导入mint-ui框架
 import mintUI from 'mint-ui'
 Vue.use(mintUI)//注入vue	
 import 'mint-ui/lib/style.min.css'
@@ -23,14 +23,18 @@ Vue.use(vueRouter);
 // 使用vueResource对象才能自动在Vue对象实例上挂载一个$http
 Vue.use(vueResource);
 
-Vue.filter('replacestr',function(input,par){
-	return input.replace(par,'')
+//定义时间全局过滤器采用的是moment.js插件
+import moment from "moment";
+Vue.filter('fmtdate',function(input,dateString){
+	return moment(input).format(dateString);
 })
 
 import Home from './components/Home/Home.vue'
 import member from './components/member/member.vue'
 import shopCart from './components/shopCart/shopCart.vue'
 import search from './components/search/search.vue'
+import newsList from './components/news/newsList.vue'
+import newsInfo from './components/news/newsInfo.vue'
 let router = new vueRouter({
 	linkActiveClass:'mui-active',
 	routes:[
@@ -38,7 +42,9 @@ let router = new vueRouter({
 		{name:'home',path:'/Home',component:Home},
 		{name:'member',path:'/member',component:member},
 		{name:'shopCart',path:'/shopCart',component:shopCart},
-		{name:'search',path:'/search',component:search}
+		{name:'search',path:'/search',component:search},
+		{name:'newsList',path:'/news/newsList',component:newsList},
+		{name:'newsInfo',path:'/news/newsInfo',component:newsInfo},
 	]
 })
 

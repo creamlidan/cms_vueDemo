@@ -2,10 +2,10 @@
 	<div class="app">
 		<!-- 整个系统的头部 -->
 		<mt-header fixed title="CMS内容管理"></mt-header>
-
+		<!-- 返回按钮 -->
+		<div v-if="isBackShow" class="back" @click="goback"><span class="mui-icon mui-icon-back"></span></div>
 		<!-- 路由占位,用来替换其他组件 -->
 		<router-view></router-view>
-
 
 		<!-- 整个系统的底部 -->
 		<nav class="mui-bar mui-bar-tab">
@@ -34,9 +34,43 @@
 	export default{
 		data(){
 			return{
-				
+				isBackShow:true
+			}
+		},
+		methods:{
+			goback(){
+				this.$router.go(-1);
+			}
+		},
+		created(){
+			if(this.$route.path == '/home'){
+				this.isBackShow = false;
+			}
+			else{
+				this.isBackShow = true;
+			}
+		},
+		watch:{
+			'$route':function(newval,oldval){
+				console.log(newval.path)
+				if(newval.path == "/home"){
+					this.isBackShow = false;
+				}else{
+					this.isBackShow = true;
+				}
 			}
 		}
 	}
 </script>
-<style></style>
+<style scoped>
+	.back{
+		position: absolute;
+		font-size: 26px;
+		color: white;
+		z-index: 999;
+		width: 30px;
+		height: 30px;
+		top:5px;
+		left:5px;
+	}
+</style>

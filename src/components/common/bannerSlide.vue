@@ -18,24 +18,22 @@
 	}
 </script>
 <style scoped>
-		.mui-content{
-			background: none;
-		}
-		.swipe_wrap,.mint-swipe-items-wrap{
-			height:2.6rem;
-		}
-		.swipe_img{
-			display: block;
-			width: 100%;
-			height:100%;
-			background-position:center;
-			background-size:100%;
-			background-repeat: no-repeat;
-		}
-		.swipe_wrap .mint-swipe-indicator{
-			opactiy:0.5 !important;
-		}
-		.swipe_wrap .mint-swipe-indicator.is-active{
-			background: #26a2ff !important;
-		}
+
+	.swipe_wrap,.mint-swipe-items-wrap{
+		height:2.6rem;
+	}
+	.swipe_img{
+		display: block;
+		width: 100%;
+		height:100%;
+		background-position:center;
+		background-size:100%;
+		background-repeat: no-repeat;
+	}
+	.swipe_wrap .mint-swipe-indicator{
+		opactiy:0.5 !important;
+	}
+	.swipe_wrap .mint-swipe-indicator.is-active{
+		background: #26a2ff !important;
+	}
 </style>
