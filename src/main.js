@@ -44,7 +44,7 @@ let router = new vueRouter({
 		{name:'shopCart',path:'/shopCart',component:shopCart},
 		{name:'search',path:'/search',component:search},
 		{name:'newsList',path:'/news/newsList',component:newsList},
-		{name:'newsInfo',path:'/news/newsInfo',component:newsInfo},
+		{name:'newsInfo',path:'/news/newsInfo/:id',component:newsInfo},
 	]
 })
 

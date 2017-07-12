@@ -64,7 +64,7 @@
 </script>
 <style scoped>
 	.back{
-		position: absolute;
+		position: fixed;
 		font-size: 26px;
 		color: white;
 		z-index: 999;

@@ -52,7 +52,7 @@
     	white-space: nowrap;
     	text-overflow: ellipsis;
     	overflow: hidden;
-    	font-size: 24px;
+    	font-size: 16px;
     	color: #333;
     	font-weight: normal;
     	margin-top: 10px;
@@ -61,7 +61,7 @@
 	}
 	.mui-ellipsis .time,.mui-ellipsis .clickNum{
 		color:#999;
-		font-size: 18px;
+		font-size: 12px;
 	}
 	.mui-ellipsis .time{
 		flex:1;

@@ -2,6 +2,18 @@ body {
   background: none;
   font-family: "microsoft YaHei";
 }
+li {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h4,
+h6 {
+  font-weight: normal;
+  font-size: 16px;
+}
 .app .templ {
   margin-top: 42px;
   background: #fff;
