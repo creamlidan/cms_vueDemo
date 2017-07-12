@@ -40,7 +40,7 @@ import comments from '../common/comments.vue'
 		methods:{
 			getInfo(){
 				var id = this.$route.params.id
-				var url = apiHost.apihost + "/src/statics/data/newsList.json?id="+ id;
+				var url = apiHost.apihost + '/getNewsList';
 				this.$http.get(url).then(res=>{
 						var resList = JSON.parse(res.bodyText).message;
 						//由于此处数据是假数据需要手动筛选数据

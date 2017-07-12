@@ -60,7 +60,7 @@
 		},
 		methods:{
 			getBanner(){
-				var url = apiHost.apihost + '/src/statics/data/banner.json'
+				var url = apiHost.apihost + '/getBanner'
 				this.$http.get(url).then(
 					function(res){
 						this.list = JSON.parse(res.bodyText);

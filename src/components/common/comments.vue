@@ -2,8 +2,8 @@
 	<div class="templ comments_wrap">
 		<h4>评论区</h4>
 		<div class="text_wrap">
-			<textarea name="" id="" cols="30" rows="4"></textarea>
-			<button class="mint-button mint-button--primary mint-button--large"><!----> <label class="mint-button-text">提交</label></button>
+			<textarea ref="textarea" id="" cols="30" rows="4"></textarea>
+			<button class="mint-button mint-button--primary mint-button--large" @click="postComments"><!----> <label class="mint-button-text">提交</label></button>
 		</div>
 		<h4 class="comments_title">
 			评论列表
@@ -15,7 +15,7 @@
 					<p>{{item.content}}</p>
 					<p>
 						<span>{{item.user_name}}</span>
-						<span>时间:{{item.add_time | fmtdate("YYYY-MM-DD")}}</span>
+						<span>{{item.add_time | fmtdate("YYYY-MM-DD")}}</span>
 					</p>
 				</li>
 				<li v-if="!comments.length"><p>暂时还没有人评论~~</p></li>
@@ -25,7 +25,8 @@
 	</div>
 </template>
 <script>
-	import apihost from '../../config.js'
+	import apihost from '../../config.js';
+	import { Toast } from 'mint-ui';
 	export default{
 		data(){
 			return{
@@ -33,24 +34,30 @@
 			}
 		},
 		created(){
-			this.getComments();
+			this.getComments(1);
 		},
 		methods:{
 			postComments(){
-				let url = apihost.apihost + '/src/statics/data/comments.json'
-				this.$http.post(url,{})
-			},
-			getComments(){
 				let id = this.$route.params.id;
-				let url = apihost.apihost + '/src/statics/data/comments.json?id='+ id;
+				let url = apihost.apihost + '/getComments';
+				let time = new Date().toString();
+				let contentText = this.$refs.textarea.value;
+				this.$http.post(url,{"content":contentText,"add_time":time,"user_name":"匿名用户","id":id},{emulateJSON:true}).then(res=>{
+					Toast('提示信息');
+					this.getComments(1);
+
+				},res=>{
+					console.log('添加评论数据失败')
+				})
+			},
+			getComments(page){
+				let id = this.$route.params.id;
+				let url = apihost.apihost + '/getComments';
 				this.$http.get(url).then(res=>{
 					let resData = JSON.parse(res.bodyText).message;
 					for(var k in resData){
 						if(resData[k].id == id){
 							this.comments = resData[k].list;
-							console.log(resData[k].list)
-							console.log(this.comments)
-							console.log(111);
 						}
 					}
 

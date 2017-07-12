@@ -32,7 +32,7 @@
 		},
 		methods:{
 			getList(){
-				var url =  apiHost.apihost + '/src/statics/data/newsList.json'
+				var url =  apiHost.apihost + '/getNewsList'
 				this.$http.get(url).then(
 					function(res){
 						this.list = JSON.parse(res.bodyText).message;
