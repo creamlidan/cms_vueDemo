@@ -4,7 +4,7 @@
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media" v-for="(item,index) in list" :key="index">
 					<router-link v-bind="{to:'/news/newsInfo/'+item.id}">
-						<img class="mui-media-object mui-pull-left" :src="item.img_url">
+						<div class="mui-media-object mui-pull-left"><img :src="item.img_url"></div>
 						<div class="mui-media-body">
 							<h2>{{item.title}}</h2>
 							<p class='mui-ellipsis'>
@@ -21,6 +21,7 @@
 <script>
 	//导入公共配置文件
 	import apiHost from "../../config.js"
+	import { Toast } from 'mint-ui'
 	export default{
 		data(){
 			return{
@@ -38,7 +39,12 @@
 						this.list = JSON.parse(res.bodyText).message;
 					},
 					function(err){
-						console.log(err)
+						var url = 'data/newsList.json';
+						this.$http.get(url).then(res=>{
+							this.list = res.data.message;
+						},res=>{
+							Toast("获取新闻列表失败,请稍后重试")
+						})
 					})
 			}
 		}
@@ -67,8 +73,17 @@
 		flex:1;
 	}
 	.mui-table-view .mui-media-object{
-		max-width: 82px;
-		height: 82px;
-		line-height: 82px;
+    	max-width: 82px;
+    	height: 82px;
+    	line-height: 82px;
+    	overflow: hidden;
+    	position: relative;
+    	width: 82px;
+	}
+	.mui-media-object img{
+		height: 100%;
+    	position: absolute;
+    	left: 50%;
+    	transform: translateX(-50%);
 	}
 </style>

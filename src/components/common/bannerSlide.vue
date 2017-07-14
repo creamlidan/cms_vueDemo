@@ -1,7 +1,7 @@
 <template>
 	<div class="banTempl">
 		<!-- banner -->
-		<mt-swipe :auto="40000" class="swipe_wrap">
+		<mt-swipe :auto="4000" class="swipe_wrap">
 			<mt-swipe-item v-for="(item,index) in imageList" :key="index">
 				<a href="##" :style="item.backgroundImg" class="swipe_img"></a>
 			</mt-swipe-item>

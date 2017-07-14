@@ -49,6 +49,7 @@
 	import bannerSlide from '../common/bannerSlide.vue'
 	//导入公共配置文件
 	import apiHost from "../../config.js"
+	import { Toast } from 'mint-ui';
 	export default{
 		data(){
 			return{
@@ -66,7 +67,15 @@
 						this.list = JSON.parse(res.bodyText);
 					},
 					function(err){
-						console.log(err)
+						//此处在访问node后台数据接口的时候如果报错就访问本地的文件
+						//为了方便本地打包测试，故做了以下操作,实际开发中不需要直接输出错误信息即可
+						this.$http.get('data/banner.json').then(res => {
+    					// 响应成功回调
+						   this.list = res.data;
+						 }, res => {
+						   // 响应错误回调
+						   Toast('网络出错,请稍后重试');
+						});
 					})
 			}
 		},
