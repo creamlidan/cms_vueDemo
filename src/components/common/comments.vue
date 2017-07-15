@@ -20,7 +20,7 @@
 				</li>
 				<li v-if="!comments.length"><p>暂时还没有人评论~~</p></li>
 			</ul>
-			<button class="mint-button mint-button--default mint-button--large"><!----> <label class="mint-button-text">加载更多</label></button>
+			<button class="mint-button mint-button--default mint-button--large"><!----> <label class="mint-button-text" @click="loading">加载更多</label></button>
 		</div>
 	</div>
 </template>
@@ -30,7 +30,8 @@
 	export default{
 		data(){
 			return{
-				comments:[]//用来存储评论列表
+				comments:[],//用来存储评论列表
+				pageIndex:1
 			}
 		},
 		created(){
@@ -61,7 +62,7 @@
 			},
 			getComments(page){
 				let id = this.$route.params.id;
-				let url = apihost.apihost + '/getComments';
+				let url = apihost.apihost + '/getComments?pageIndex=' + this.pageIndex;
 				this.$http.get(url).then(res=>{
 					let resData = JSON.parse(res.bodyText).message;
 					for(var k in resData){

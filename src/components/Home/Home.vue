@@ -12,10 +12,10 @@
 					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<router-link to="/photo/photoList">
 						<span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
 						<div class="mui-media-body">图片分享</div>
-					</a>
+					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
 					<a href="#">
@@ -63,10 +63,10 @@
 			getBanner(){
 				var url = apiHost.apihost + '/getBanner'
 				this.$http.get(url).then(
-					function(res){
+					res=>{
 						this.list = JSON.parse(res.bodyText);
 					},
-					function(err){
+					res=>{
 						//此处在访问node后台数据接口的时候如果报错就访问本地的文件
 						//为了方便本地打包测试，故做了以下操作,实际开发中不需要直接输出错误信息即可
 						this.$http.get('data/banner.json').then(res => {

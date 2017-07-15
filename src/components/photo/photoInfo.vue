@@ -1,0 +1,1 @@
+photoInfo.vue

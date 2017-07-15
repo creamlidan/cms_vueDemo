@@ -35,6 +35,8 @@ import shopCart from './components/shopCart/shopCart.vue'
 import search from './components/search/search.vue'
 import newsList from './components/news/newsList.vue'
 import newsInfo from './components/news/newsInfo.vue'
+import photoList from './components/photo/photoList.vue'
+import photoInfo from './components/photo/photoInfo.vue'
 let router = new vueRouter({
 	linkActiveClass:'mui-active',
 	routes:[
@@ -45,6 +47,8 @@ let router = new vueRouter({
 		{name:'search',path:'/search',component:search},
 		{name:'newsList',path:'/news/newsList',component:newsList},
 		{name:'newsInfo',path:'/news/newsInfo/:id',component:newsInfo},
+		{name:'photoList',path:'/photo/photoList',component:photoList},
+		{name:'photoInfo',path:'/photo/photoInfo/:id',component:photoInfo}
 	]
 })
 
