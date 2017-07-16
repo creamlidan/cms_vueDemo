@@ -34,6 +34,10 @@ module.exports = {
 			{
 				test:/\.vue$/, 
 				loader:'vue-loader',
+			},
+			{
+    			test: /vue-preview.src.*?js$/,//解析vue-preview中特殊格式文件
+    			loader: 'babel-loader'
 			}
 		]
 	},

@@ -11,7 +11,9 @@
 		<div class="imgList">
 			<ul>
 				<li v-for="(item,index) in imgList" :key="index">
-					<img v-lazy="item.img_url">
+					<router-link v-bind='{to:"/photo/photoInfo/"+item.id}'>
+						<img v-lazy="item.img_url">
+					</router-link>
 					<p><span>{{item.zhaiyao}}</span></p>
 				</li>
 			</ul>
@@ -60,7 +62,7 @@
 				this.imgList = "";
 				let url = apihost.apihost + '/getImageList?id='+ id;
 				this.$http.get(url).then(res=>{
-					this.imgList = JSON.parse(res.bodyText);
+					this.imgList = JSON.parse(res.bodyText).img_list;
 					//数据返回后关闭正在加载提示
 					Indicator.close();
 				},res=>{
@@ -83,7 +85,6 @@
 	}
 </script>
 <style>
-
 	.tablist{
 		width: 100%;
 		overflow-x: auto;
@@ -107,7 +108,7 @@
 		position: relative;
 		margin-bottom: 10px;
 	}
-	.imgList li > img{
+	.imgList li img{
 		width: 100%;
 	}
 	.imgList li p{

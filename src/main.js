@@ -1,6 +1,7 @@
 import Vue from "vue"
 import vueRouter from 'vue-router'
 import vueResource from 'vue-resource'
+import VuePreview from 'vue-preview'
 
 import App from './App.vue'
 
@@ -22,6 +23,9 @@ Vue.use(vueRouter);
 
 // 使用vueResource对象才能自动在Vue对象实例上挂载一个$http
 Vue.use(vueResource);
+
+//图片弹出预览插件引用
+Vue.use(VuePreview)
 
 //定义时间全局过滤器采用的是moment.js插件
 import moment from "moment";

@@ -109,7 +109,7 @@ app.get('/getImageList', function (req, res) {
       //根据传递的ID筛选出数据
       for(var k in data.message){
         if(data.message[k].img_cate == rdata.id){
-          res.send(data.message[k].img_list);
+          res.send(data.message[k]);
           return;
         }
       }

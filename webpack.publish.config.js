@@ -55,7 +55,11 @@ module.exports = {
 			{
 				test:/\.vue$/, 
 				loader:'vue-loader',
-			}
+			},
+            {
+                test: /vue-preview.src.*?js$/,//解析vue-preview中特殊格式文件
+                loader: 'babel-loader'
+            }
 		]
 	},
 	//系统会帮我们自动生成一个index文件(为了避免打包后的路径问题)
