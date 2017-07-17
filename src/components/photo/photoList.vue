@@ -58,7 +58,7 @@
 			//根据分类ID获取图片列表数据
 			getImageList(id){
 				//提醒用户正在加载
-				Indicator.open("加载中...");
+				//Indicator.open("加载中...");
 				this.imgList = "";
 				let url = apihost.apihost + '/getImageList?id='+ id;
 				this.$http.get(url).then(res=>{
@@ -72,7 +72,8 @@
 						for(var k in resData){
         					if(resData.img_cate == id){
         					  this.imgList = resData[k].img_list;
-        					  Indicator.close();
+        					  alert(this.imgList.id)
+        					  //Indicator.close();
         					}
       					}
 					},res=>{

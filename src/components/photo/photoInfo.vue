@@ -48,7 +48,14 @@
 						var resData = res.data.message;
 						for(var k in resData){
         					if(resData.img_cate == id){
-        					  resData[k].img_list;
+        						let imgList =  resData[k].img_list;
+        					//获取照片的详细信息
+								for(var k in imgList){
+									if(imgList[k].id == id){
+										this.photoInfo = imgList[k];
+										this.list = imgList[k].other_imgUrl;
+									}
+								}
         					}
       					}
 					},res=>{
