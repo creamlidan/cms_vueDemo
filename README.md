@@ -2,8 +2,7 @@
 ### 技术选型
 - vue2 + vue-resource + vue-router + mint-ui + mui + webpack + ES6  + less + flex 
 ### 关于数据接口
-- nodejs构建的后台系统接口
-- 注意点: 项目中涉及到数据请求的地方在返回错误信息的回调函数中,重新发送了一次本地静态资源请求，方便打包到手机上测试.真实环境忽略删除即可
+- 项目中使用json文件模拟数据,实际开发中请求对应接口即可
 ### 项目运行
 - git clone https://github.com/creamlidan/cms_vueDemo.git  
 
