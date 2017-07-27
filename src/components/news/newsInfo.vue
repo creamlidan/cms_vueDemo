@@ -21,7 +21,6 @@
 	</div>
 </template>
 <script>
-import apiHost from "../../config.js"
 import comments from '../common/comments.vue'
 import { Toast } from 'mint-ui'
 	export default{
@@ -41,9 +40,8 @@ import { Toast } from 'mint-ui'
 		methods:{
 			getInfo(){
 				var id = this.$route.params.id
-				var url = apiHost.apihost + '/getNewsList';
-				this.$http.get(url).then(res=>{
-						var resList = JSON.parse(res.bodyText).message;
+				this.$http.get('./src/statics/data/newsList.json').then(res=>{
+						var resList = res.data.message;
 						//由于此处数据是假数据需要手动筛选数据
 						for(var k in resList){
 							if (resList[k].id ==  id) {
@@ -52,20 +50,7 @@ import { Toast } from 'mint-ui'
 							}
 						}
 					},res=>{
-						var url = 'data/newsList.json';
-						this.$http.get(url).then(res=>{
-							var resList = res.data.message;
-							//由于此处数据是假数据需要手动筛选数据
-							for(var k in resList){
-								if (resList[k].id ==  id) {
-									this.info = resList[k];
-									return;
-								}
-							}
-						},res=>{
-							Toast("访问新闻详细出错,请稍后重试")
-						})
-					
+						Toast("访问新闻详细出错,请稍后重试");	
 				})
 			}
 		}

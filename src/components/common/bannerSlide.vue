@@ -27,7 +27,7 @@
 		width: 100%;
 		height:100%;
 		background-position:center;
-		background-size:100%;
+		background-size:auto 100%;
 		background-repeat: no-repeat;
 	}
 	.swipe_wrap .mint-swipe-indicator{

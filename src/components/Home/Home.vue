@@ -8,13 +8,13 @@
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
 					<router-link to="/news/newsList">
 						<span class="mui-icon mui-icon-home"></span>
-						<div class="mui-media-body">新闻资讯</div>
+						<div class="mui-media-body">最新动态</div>
 					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
 					<router-link to="/photo/photoList">
-						<span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
-						<div class="mui-media-body">图片分享</div>
+						<span class="mui-icon mui-icon-email"></span>
+						<div class="mui-media-body">美图分享</div>
 					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -24,22 +24,22 @@
 					</router-link>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<router-link to="/messageBoard">
 						<span class="mui-icon mui-icon-location"></span>
-						<div class="mui-media-body">留言反馈</div>
-					</a>
+						<div class="mui-media-body">问题反馈</div>
+					</router-link>
 				</li>
+<!-- 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+	<a href="#">
+		<span class="mui-icon mui-icon-search"></span>
+		<div class="mui-media-body">视频专区</div>
+	</a>
+</li> -->
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
-						<span class="mui-icon mui-icon-search"></span>
-						<div class="mui-media-body">视频专区</div>
-					</a>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<router-link to="/me/aboutVersion">
 						<span class="mui-icon mui-icon-phone"></span>
 						<div class="mui-media-body">联系我们</div>
-					</a>
+					</router-link>
 				</li>
 			</ul> 
 		</div>
@@ -61,21 +61,11 @@
 		},
 		methods:{
 			getBanner(){
-				var url = apiHost.apihost + '/getBanner'
-				this.$http.get(url).then(
-					res=>{
-						this.list = JSON.parse(res.bodyText);
+				this.$http.get('./src/statics/data/banner.json').then(res=>{
+						this.list = res.data;
 					},
 					res=>{
-						//此处在访问node后台数据接口的时候如果报错就访问本地的文件
-						//为了方便本地打包测试，故做了以下操作,实际开发中不需要直接输出错误信息即可
-						this.$http.get('data/banner.json').then(res => {
-    					// 响应成功回调
-						   this.list = res.data;
-						 }, res => {
-						   // 响应错误回调
-						   Toast('网络出错,请稍后重试');
-						});
+						Toast('网络出错,请稍后重试');
 					})
 			}
 		},

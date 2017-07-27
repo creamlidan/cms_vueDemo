@@ -1,0 +1,19 @@
+{
+	"status":0,
+	"message":[
+		{
+			"id":1,
+			"activity_title":"满200减20",
+			"activity_image":"./src/statics/images/banner/1.jpg",
+			"activity_info":"<p>即日起至2017-12-30日止全场满200减20全场满200减20全场满200减20</p><p>即日起至2017-12-30日止全场满200减20</p>",
+			"add_time":"2016-01-19T20:09:30.000z"
+		},
+		{
+			"id":2,
+			"activity_title":"满500送国庆大礼包",
+			"activity_image":"./src/statics/images/banner/2.jpg",
+			"activity_info":"<p>即日起至2017-10-07日止全场满500送国庆大礼包</p>",
+			"add_time":"2016-01-19T20:09:30.000z"
+		}
+	]
+}

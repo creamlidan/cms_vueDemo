@@ -7,7 +7,7 @@
 		<div class="thumbnail">
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="(item, index) in list">
-					<img class="preview-img thumImg"  :src="item.src" @click="$preview.open(index, list)">
+					<img class="preview-img thumImg" height="100" :src="item.src" @click="$preview.open(index, list)">
 		        </li>
 		    </ul> 
 		</div>
@@ -17,7 +17,6 @@
 	</div>
 </template>
 <script>
-	import apihost from '../../config.js';
 	export default{
 		data(){
 			return{
@@ -26,47 +25,32 @@
 			}
 		},
 		created(){
-			this.getPhotoInfo()
+			this.getPhotoInfo();
 		},
 		methods:{
 			getPhotoInfo(){
 				let id = this.$route.params.id;
-				let url = apihost.apihost + '/getImageList?id='+ id.slice(0,2);
-				this.$http.get(url).then(res=>{
-					let imgList = JSON.parse(res.bodyText).img_list;
-					//获取照片的详细信息
-					for(var k in imgList){
-						if(imgList[k].id == id){
-							this.photoInfo = imgList[k];
-							this.list = imgList[k].other_imgUrl;
-						}
-					}
-
-				},res=>{
-					let url = 'data/imgCateList.json';
-					this.$http.get(url).then(res=>{
-						var resData = res.data.message;
-						for(var k in resData){
-        					if(resData.img_cate == id){
-        						let imgList =  resData[k].img_list;
-        					//获取照片的详细信息
-								for(var k in imgList){
-									if(imgList[k].id == id){
-										this.photoInfo = imgList[k];
-										this.list = imgList[k].other_imgUrl;
-									}
-								}
+				this.$http.get('./src/statics/data/imgCateList.json').then(res=>{
+					var resData = res.data.message;
+					for(var k in resData){
+        				if(resData[k].img_cate == id.slice(0,2)){
+        					let imgList =  resData[k].img_list;
+        					for(var k in imgList){
+        						if(imgList[k].id == id){
+        							this.photoInfo = imgList[k];
+        							this.list = imgList[k].other_imgUrl;
+        						}
         					}
-      					}
-					},res=>{
-						Toast("访问出错,请稍后重试");
-					})
+        				}
+      				}
+				},res=>{
+					Toast("访问出错,请稍后重试");
 				})
 			}
 		}
 	}
 </script>
-<style>
+<style scoped>
 	.title{
 		padding-left: 10px;
 		padding-top: 10px;

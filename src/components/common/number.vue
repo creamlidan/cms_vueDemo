@@ -12,28 +12,41 @@
 				count:1
 			}
 		},
+		created(){
+			this.count = this.initcount>1?this.initcount:1;
+		},
+		props:['initcount'],
 		methods:{
 			sub(){
-				this.count--;
+				if(this.count<=1){
+					this.count == 1;
+				}else{
+					this.count--;
+				}
+				this.radioCount();
 			},
 			add(){
 				this.count++;
+				this.radioCount();
 			},
 			//向父组件广播count值
 			radioCount(){
-				let count = 'count';
-				this.$emit(key,this.count);
+				this.$emit('count',this.count);
 			}
 		}
 	}
 </script>
 <style scoped>
 	.left,.middle,.right{
-		display: inline-block;
+		float: left;
 		width: 45px;
 		text-align: center;
 		border:1px solid #BDBDBD;
 		font-size:12px;
+	}
+	.middle{
+		border-left: none;
+		border-right: none;
 	}
 	.left,.right{
 		width: 30px;
@@ -41,5 +54,6 @@
 	.numTempl{
 		display: inline-block;
 		margin-left: 10px;
+		vertical-align: bottom;
 	}
 </style>

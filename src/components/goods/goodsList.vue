@@ -23,7 +23,6 @@
 	</div>
 </template>
 <script>
-	import apiHost from "../../config.js"
 	import { Toast } from 'mint-ui'
 	export default{
 		data(){
@@ -36,16 +35,11 @@
 		},
 		methods:{
 			getGoodsList(){
-				let url = apiHost.apihost + "/getGoodsList";
+				let url = './src/statics/data/goodsList.json';
 				this.$http.get(url).then(res=>{
-					this.goodsList = JSON.parse(res.bodyText)
+					this.goodsList = res.data.message;
 				},res=>{
-					let url = 'data/goodsList.json';
-					this.$http.get(url).then(res=>{
-						var goodsList = res.data.message;
-					},res=>{
-						Toast("访问新闻详细出错,请稍后重试")
-					})
+					Toast("访问新闻详细出错,请稍后重试");
 				})
 			}
 		}

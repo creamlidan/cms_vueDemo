@@ -12,6 +12,10 @@ var CleanPlugin = require('clean-webpack-plugin');
 var ExtractTextWebpackPlugin  = require('extract-text-webpack-plugin');
 //拷贝文件
 var CopyWebpackPlugin = require('copy-webpack-plugin')
+
+//拷贝文件
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
 	entry:'./src/main.js', //要打包的源文件
 	//分离第三方应用
@@ -69,12 +73,12 @@ module.exports = {
         //分离第三方应用
 		new webpack.optimize.CommonsChunkPlugin({name:'vendors',filename:'vendors.js'}),
 		new CopyWebpackPlugin([{
-            from: __dirname + '/src/statics/data',
-            to:__dirname +'/dist/data'
-        }]),
-       	new CopyWebpackPlugin([{
             from: __dirname + '/src/statics/images',
-            to:__dirname +'/dist/images'
+            to:__dirname +'/dist/src/statics/images'
+        }]),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/src/statics/data',
+            to:__dirname +'/dist/src/statics/data'
         }]),
     	new htmlWebpackPlugin({
         	template:'index.html',//根据index.html这个模板来生成(自己生成)

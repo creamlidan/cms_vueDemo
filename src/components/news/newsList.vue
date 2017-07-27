@@ -20,7 +20,6 @@
 </template>
 <script>
 	//导入公共配置文件
-	import apiHost from "../../config.js"
 	import { Toast } from 'mint-ui'
 	export default{
 		data(){
@@ -33,18 +32,12 @@
 		},
 		methods:{
 			getList(){
-				var url =  apiHost.apihost + '/getNewsList'
-				this.$http.get(url).then(
-					function(res){
-						this.list = JSON.parse(res.bodyText).message;
+				this.$http.get('./src/statics/data/newsList.json').then(
+					res=>{
+						this.list = res.data.message;
 					},
-					function(err){
-						var url = 'data/newsList.json';
-						this.$http.get(url).then(res=>{
-							this.list = res.data.message;
-						},res=>{
-							Toast("获取新闻列表失败,请稍后重试")
-						})
+					res=>{
+						Toast("获取新闻列表失败,请稍后重试");
 					})
 			}
 		}

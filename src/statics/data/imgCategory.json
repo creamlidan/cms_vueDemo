@@ -2,10 +2,6 @@
 	"status":0,
 	"message":[
 		{
-			"title":"全部",
-			"id":"all"
-		},
-		{
 			"title":"风景",
 			"id":"fj"
 		},

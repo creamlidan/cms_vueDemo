@@ -20,27 +20,24 @@
 				</li>
 				<li v-if="!comments.length"><p>暂时还没有人评论~~</p></li>
 			</ul>
-			<button class="mint-button mint-button--default mint-button--large"><!----> <label class="mint-button-text" @click="loading">加载更多</label></button>
 		</div>
 	</div>
 </template>
 <script>
-	import apihost from '../../config.js';
 	import { Toast } from 'mint-ui';
 	export default{
 		data(){
 			return{
-				comments:[],//用来存储评论列表
-				pageIndex:1
+				comments:[]//用来存储评论列表
 			}
 		},
 		created(){
-			this.getComments(1);
+			this.getComments();
 		},
 		methods:{
 			postComments(){
 				let id = this.$route.params.id;
-				let url = apihost.apihost + '/getComments';
+				let url = './src/statics/data/comments.json';
 				let time = new Date().toString();
 				let contentText = this.$refs.textarea.value;
 				if(contentText.length<=0){
@@ -51,37 +48,21 @@
 					Toast('提交成功');
 					this.getComments(1);
 				},res=>{
-					let url = 'data/comments.json';
-					this.$http.post(url,{"content":contentText,"add_time":time,"user_name":"匿名用户","id":id},{emulateJSON:true}).then(res=>{
-						Toast('提交评论成功');
-						this.getComments(1);
-						},res=>{
-							Toast('添加评论失败,请稍后重试');
-						})
-					})
+					Toast('添加评论失败,请稍后重试');
+				})
 			},
-			getComments(page){
+			getComments(){
 				let id = this.$route.params.id;
-				let url = apihost.apihost + '/getComments?pageIndex=' + this.pageIndex;
+				let url = './src/statics/data/comments.json';
 				this.$http.get(url).then(res=>{
-					let resData = JSON.parse(res.bodyText).message;
+				let resData = res.data.message;
 					for(var k in resData){
 						if(resData[k].id == id){
 							this.comments = resData[k].list;
 						}
 					}
 				},res=>{
-					let url = 'data/comments.json';
-					this.$http.get(url).then(res=>{
-						let resData = res.data.message;
-						for(var k in resData){
-							if(resData[k].id == id){
-								this.comments = resData[k].list;
-							}
-						}
-					},res=>{
-						Toast('获取评论数据失败,请稍后重试')
-					})
+					Toast('获取评论数据失败,请稍后重试');
 				})
 			}
 		},
